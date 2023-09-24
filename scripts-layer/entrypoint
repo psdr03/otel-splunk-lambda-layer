@@ -2,8 +2,6 @@
 
 eval "$(node /opt/getSecret.js)"
 echo "Splunk access token set"
-echo $SPLUNK_ACCESS_TOKEN
-# eval "$(node ./getSecret.js)"
 export NODE_OPTIONS="${NODE_OPTIONS} --require /opt/wrapper.js"
 
 if [[ $OTEL_RESOURCE_ATTRIBUTES != *"service.name="* ]]; then

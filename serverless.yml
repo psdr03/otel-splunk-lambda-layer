@@ -21,15 +21,16 @@ functions:
   api:
     handler: index.handler
     environment:
-      OTEL_SERVICE_NAME: "test"
-      OTEL_RESOURCE_ATTRIBUTES: "service.name=test,deployment.environment=dev"
+      OTEL_SERVICE_NAME: "lambda-rest-api"
+      OTEL_RESOURCE_ATTRIBUTES: "service.name=lambda-rest-api,deployment.environment=dev"
       OTEL_LOG_LEVEL: "ERROR"
       OTEL_PROPAGATORS: "tracecontext"
-      AWS_LAMBDA_EXEC_WRAPPER: "/opt/wee"
+      AWS_LAMBDA_EXEC_WRAPPER: "/opt/entrypoint"
       OTEL_TRACES_SAMPLER: "always_on"
-      OTEL_EXPORTER_OTLP_TRACES_PROTOCOL: "http/protobuf"
-      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: "https://ingest.au0.signalfx.com/v2/trace/otlp"
-      OTEL_TRACES_EXPORTER: "otlp"
+      SPLUNK_REALM: "au0"
+      # OTEL_EXPORTER_OTLP_TRACES_PROTOCOL: "http/protobuf"
+      # OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: "https://ingest.au0.signalfx.com/v2/trace/otlp"
+      # OTEL_TRACES_EXPORTER: "otlp"
     layers:
       - !Ref ScriptsLayerLambdaLayer # Reference the layer you created
       - arn:aws:lambda:ap-southeast-1:254067382080:layer:splunk-apm:87

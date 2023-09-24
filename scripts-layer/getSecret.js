@@ -8,7 +8,6 @@ async function getAndSetSecret() {
       .getSecretValue({ SecretId: "dev/splunk-access-token" })
       .promise();
     if (secretData.SecretString) {
-      // process.env.SPLUNK_ACCESS_TOKEN = secretData.SecretString;
       console.log(`export SPLUNK_ACCESS_TOKEN="${secretData.SecretString}"`);
     } else {
       console.error("Secret not found or not in string format.");
